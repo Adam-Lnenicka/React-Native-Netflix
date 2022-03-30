@@ -54,7 +54,7 @@ export default function App() {
         />
         <Text>Open up App.js to start working on your app!</Text>
         <TextInput style={styles.textInput} onChangeText={inputChange} />
-        <Button title="my button motherfucker" onPress={handleArray} />
+        <Button title="my button" onPress={handleArray} />
         <StatusBar style="auto" />
         <View>
           {textArray.map((t) => (
@@ -62,9 +62,17 @@ export default function App() {
           ))}
         </View>
         <FlatList
-          data={movieArray.data}
+          data={movies}
           keyExtractor={({ id }, index) => id}
-          renderItem={({ item }) => <View>{item.id}</View>}
+          renderItem={({ item }) => (
+            <View>
+              <Text>{item.id}</Text>
+              <Text>{item.title}</Text>
+              <Image
+                source={{ width: 300, height: 400, uri: item.poster_path }}
+              />
+            </View>
+          )}
         />
       </SafeAreaView>
     </>
