@@ -11,16 +11,16 @@ import {
   TextInput,
   Button,
   FlatList,
+  TouchableOpacity,
 } from "react-native";
 import Movie from "../components/Movie";
 import SearchBanner from "../components/SearchBanner";
 
-export default function Home() {
+export default function Home({ navigation }) {
   const [text, setText] = useState("");
   const [textArray, setTextArray] = useState([]);
   const [movies, setMovies] = useState([]);
   const [searchPhrase, setSearchPhrase] = useState("");
-  const navigation = useNavigation();
 
   const movieArray = async () => {
     const url = "http://localhost:4000/movies";
@@ -92,7 +92,13 @@ export default function Home() {
         <FlatList
           data={moviesAfterSearch}
           keyExtractor={({ id }, index) => id}
-          renderItem={({ item }) => <Movie item={item} />}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() => navigation.navigate("FeaturedMovie", item)}
+            >
+              <Movie item={item} />
+            </TouchableOpacity>
+          )}
         />
       </SafeAreaView>
     </>
