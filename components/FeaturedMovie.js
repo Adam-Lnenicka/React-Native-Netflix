@@ -1,9 +1,9 @@
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
 export default function () {
   return (
     <View>
-      <h1>Featured Movie</h1>
+      <Text>Featured Movie</Text>
     </View>
   );
 }

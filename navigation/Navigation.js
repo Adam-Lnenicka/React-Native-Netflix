@@ -1,19 +1,17 @@
 import FeaturedMovie from "../components/FeaturedMovie";
+import Home from "../pages/Home";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const Navigation = createStackNavigator(
-  {
-    FeaturedMovie: {
-      screen: FeaturedMovie,
-    },
-    : {
-      screen: CategoryMealsScreen,
-    },
-    MealDetail: MealDetailScreen,
-  },
-  {
-    // initialRouteName: 'Categories',
-    defaultNavigationOptions: defaultStackNavOptions,
-  }
-);
+const Stack = createNativeStackNavigator();
 
-export default 
+const StackNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="FeaturedMovie" component={FeaturedMovie} />
+    </Stack.Navigator>
+  );
+};
+
+export default StackNavigator;
