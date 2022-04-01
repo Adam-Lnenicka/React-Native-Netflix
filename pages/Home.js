@@ -23,7 +23,19 @@ export default function Home({ navigation }) {
   const [text, setText] = useState("");
   const [textArray, setTextArray] = useState([]);
   const [searchPhrase, setSearchPhrase] = useState("");
-  const { movies, movieArray } = useMovieApi();
+  const [movies, setMovies] = useState([]);
+
+  const movieArray = async () => {
+    const url = "http://localhost:4000/movies";
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setMovies(data.data);
+    } catch (err) {
+      console.log.err;
+    }
+  };
 
   const [values, setValues] = useState({
     title: "",
@@ -52,10 +64,17 @@ export default function Home({ navigation }) {
     console.log(values);
   };
 
-  // const handleArray = () => {
-  //   setTextArray((currentTextArray) => [...currentTextArray, text]);
-  //   setText("");
-  // };
+  const handleAddMovie = () => {
+    setMovies((currentMoviesArray) => ({
+      ...currentMoviesArray,
+      id: Math.floor(Math.random() * 1000),
+      title: values.title,
+      overview: values.overview,
+      release_date: values.release_date,
+      poster_path: values.poster_path,
+    }));
+    setText("");
+  };
 
   //end of form section
   //
@@ -75,14 +94,14 @@ export default function Home({ navigation }) {
     setText("");
   };
 
-  const moviesAfterSearch = movies.filter((data) => {
-    if (searchPhrase === "") {
-      return data;
-    } else if (data.title.toLowerCase().includes(searchPhrase.toLowerCase())) {
-      return data;
-    }
-    return null;
-  });
+  // const moviesAfterSearch = movies.filter((data) => {
+  //   if (searchPhrase === "") {
+  //     return data;
+  //   } else if (data.title.toLowerCase().includes(searchPhrase.toLowerCase())) {
+  //     return data;
+  //   }
+  //   return null;
+  // });
 
   useEffect(() => {
     movieArray();
@@ -111,7 +130,7 @@ export default function Home({ navigation }) {
           onChangeText={handlePosterPathChange}
         />
 
-        <Button title="Add Movie" on />
+        <Button title="Add Movie" onPress={handleAddMovie} />
         <Button title="Reset" />
       </View>
       <Button
@@ -134,7 +153,7 @@ export default function Home({ navigation }) {
           ))}
         </View>
         <FlatList
-          data={moviesAfterSearch}
+          data={movies}
           keyExtractor={({ id }, index) => id}
           renderItem={({ item }) => (
             <TouchableOpacity
