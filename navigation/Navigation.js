@@ -1,7 +1,7 @@
 import FeaturedMovie from "../components/FeaturedMovie";
 import Home from "../pages/Home";
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import AddMovieForm from "../components/AddMovieForm";
 
 const Stack = createNativeStackNavigator();
 
@@ -10,6 +10,7 @@ const StackNavigator = () => {
     <Stack.Navigator>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="FeaturedMovie" component={FeaturedMovie} />
+      <Stack.Screen name="AddMovieForm" component={AddMovieForm} />
     </Stack.Navigator>
   );
 };

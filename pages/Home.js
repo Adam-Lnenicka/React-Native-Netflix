@@ -53,15 +53,14 @@ export default function Home({ navigation }) {
 
   return (
     <View style={globalStyles.container}>
+      <Button
+        title="Add Movie"
+        onPress={() => {
+          navigation.navigate("AddMovieForm");
+        }}
+      />
       <View style={styles.container}>
         <SearchBanner handleSearch={handleSearch} searchPhrase={searchPhrase} />
-
-        <Button
-          title="see featured movie"
-          onPress={() => {
-            navigation.navigate("FeaturedMovie");
-          }}
-        />
 
         <Text>Open up App.js to start working on your app!</Text>
 
