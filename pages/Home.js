@@ -7,7 +7,7 @@ import {
   SafeAreaView,
   StatusBar,
   Platform,
-  Image,
+  ImageBackground,
   TextInput,
   Button,
   FlatList,
@@ -63,14 +63,22 @@ export default function Home({ navigation }) {
   return (
     <>
       <SafeAreaView style={styles.container}>
-        <Image
-          source={{
-            width: 500,
-            height: 100,
-            uri: "https://images.unsplash.com/photo-1616530940355-351fabd9524b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bW92aWVzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
-          }}
-        />
-        <SearchBanner handleSearch={handleSearch} searchPhrase={searchPhrase} />
+        <View>
+          <View style={styles.overlay}>
+            <ImageBackground
+              source={{
+                uri: "https://images.unsplash.com/photo-1616530940355-351fabd9524b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bW92aWVzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
+              }}
+              resizeMode="cover"
+              style={styles.image}
+            >
+              <SearchBanner
+                handleSearch={handleSearch}
+                searchPhrase={searchPhrase}
+              />
+            </ImageBackground>
+          </View>
+        </View>
 
         <Button
           title="see featured movie"
@@ -120,5 +128,12 @@ const styles = StyleSheet.create({
   textInput: {
     borderWidth: 1,
     width: "80%",
+    color: "grey",
+  },
+  image: {
+    minHeight: 300,
+  },
+  overlay: {
+    backgroundColor: "rgba(69,85,117,0.9)",
   },
 });
