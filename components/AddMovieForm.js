@@ -6,21 +6,26 @@ export default function AddMovieForm() {
     title: "",
     overview: "",
     release_date: "",
-    genres: [],
+    poster_path: "",
   });
 
-  const handleTitleChange = (test) => {
-    setValues((prevValues) => ({ ...prevValues, title: test }));
+  const handleTitleChange = (input) => {
+    setValues((prevValues) => ({ ...prevValues, title: input }));
     console.log(values);
   };
 
-  const handleOverviewChange = (test) => {
-    setValues((prevValues) => ({ ...prevValues, title: test }));
+  const handleOverviewChange = (input) => {
+    setValues((prevValues) => ({ ...prevValues, title: input }));
     console.log(values);
   };
 
-  const handleReleaseDateChange = (test) => {
-    setValues((prevValues) => ({ ...prevValues, title: test }));
+  const handleReleaseDateChange = (input) => {
+    setValues((prevValues) => ({ ...prevValues, title: input }));
+    console.log(values);
+  };
+
+  const handlePosterPathChange = (input) => {
+    setValues((prevValues) => ({ ...prevValues, title: input }));
     console.log(values);
   };
   return (
@@ -31,16 +36,21 @@ export default function AddMovieForm() {
       />
 
       <TextInput
-        placeholder="Enter movie title"
-        onChangeText={handleTitleChange}
+        placeholder="Enter movie overview"
+        onChangeText={handleOverviewChange}
       />
 
       <TextInput
         placeholder="Enter movie title"
-        onChangeText={handleTitleChange}
+        onChangeText={handleReleaseDateChange}
       />
 
-      <Button title="Add Movie" />
+      <TextInput
+        placeholder="Enter movie title"
+        onChangeText={handlePosterPathChange}
+      />
+
+      <Button title="Add Movie" on />
       <Button title="Reset" />
     </View>
   );

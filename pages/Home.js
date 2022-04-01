@@ -25,6 +25,43 @@ export default function Home({ navigation }) {
   const [searchPhrase, setSearchPhrase] = useState("");
   const { movies, movieArray } = useMovieApi();
 
+  const [values, setValues] = useState({
+    title: "",
+    overview: "",
+    release_date: "",
+    poster_path: "",
+  });
+
+  const handleTitleChange = (input) => {
+    setValues((prevValues) => ({ ...prevValues, title: input }));
+    console.log(values);
+  };
+
+  const handleOverviewChange = (input) => {
+    setValues((prevValues) => ({ ...prevValues, overview: input }));
+    console.log(values);
+  };
+
+  const handleReleaseDateChange = (input) => {
+    setValues((prevValues) => ({ ...prevValues, release_date: input }));
+    console.log(values);
+  };
+
+  const handlePosterPathChange = (input) => {
+    setValues((prevValues) => ({ ...prevValues, poster_path: input }));
+    console.log(values);
+  };
+
+  // const handleArray = () => {
+  //   setTextArray((currentTextArray) => [...currentTextArray, text]);
+  //   setText("");
+  // };
+
+  //end of form section
+  //
+  ///
+  //
+  //
   const handleSearch = (input) => {
     setSearchPhrase(input);
   };
@@ -53,6 +90,30 @@ export default function Home({ navigation }) {
 
   return (
     <View style={globalStyles.container}>
+      <View>
+        <TextInput
+          placeholder="Enter movie title"
+          onChangeText={handleTitleChange}
+        />
+
+        <TextInput
+          placeholder="Enter movie overview"
+          onChangeText={handleOverviewChange}
+        />
+
+        <TextInput
+          placeholder="Enter movie title"
+          onChangeText={handleReleaseDateChange}
+        />
+
+        <TextInput
+          placeholder="Enter movie title"
+          onChangeText={handlePosterPathChange}
+        />
+
+        <Button title="Add Movie" on />
+        <Button title="Reset" />
+      </View>
       <Button
         title="Add Movie"
         onPress={() => {
