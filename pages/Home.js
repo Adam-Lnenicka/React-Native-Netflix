@@ -18,23 +18,23 @@ import Movie from "../components/Movie";
 import SearchBanner from "../components/SearchBanner";
 import { globalStyles } from "../styles/globalStyles";
 
-export default function Home({ navigation }) {
-  const [text, setText] = useState("");
-  const [textArray, setTextArray] = useState([]);
-  const [movies, setMovies] = useState([]);
-  const [searchPhrase, setSearchPhrase] = useState("");
+// export default function Home({ navigation }) {
+//   const [text, setText] = useState("");
+//   const [textArray, setTextArray] = useState([]);
+//   const [movies, setMovies] = useState([]);
+//   const [searchPhrase, setSearchPhrase] = useState("");
 
-  const movieArray = async () => {
-    const url = "http://localhost:4000/movies";
+//   const movieArray = async () => {
+//     const url = "http://localhost:4000/movies";
 
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      setMovies(data.data);
-    } catch (err) {
-      console.log.err;
-    }
-  };
+//     try {
+//       const response = await fetch(url);
+//       const data = await response.json();
+//       setMovies(data.data);
+//     } catch (err) {
+//       console.log.err;
+//     }
+//   };
 
   const handleSearch = (input) => {
     setSearchPhrase(input);
