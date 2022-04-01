@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
+import colors from "../styles/colors";
 import {
   StyleSheet,
   Text,
@@ -15,6 +16,7 @@ import {
 } from "react-native";
 import Movie from "../components/Movie";
 import SearchBanner from "../components/SearchBanner";
+import { globalStyles } from "../styles/globalStyles";
 
 export default function Home({ navigation }) {
   const [text, setText] = useState("");
@@ -61,24 +63,9 @@ export default function Home({ navigation }) {
   });
 
   return (
-    <>
-      <SafeAreaView style={styles.container}>
-        <View>
-          <View style={styles.overlay}>
-            <ImageBackground
-              source={{
-                uri: "https://images.unsplash.com/photo-1616530940355-351fabd9524b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bW92aWVzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60",
-              }}
-              resizeMode="cover"
-              style={styles.image}
-            >
-              <SearchBanner
-                handleSearch={handleSearch}
-                searchPhrase={searchPhrase}
-              />
-            </ImageBackground>
-          </View>
-        </View>
+    <View style={globalStyles.container}>
+      <View style={styles.container}>
+        <SearchBanner handleSearch={handleSearch} searchPhrase={searchPhrase} />
 
         <Button
           title="see featured movie"
@@ -108,32 +95,22 @@ export default function Home({ navigation }) {
             </TouchableOpacity>
           )}
         />
-      </SafeAreaView>
-    </>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "pink",
+    // flex: 1,
     alignItems: "center",
     justifyContent: "center",
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
-  inputContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
+
   textInput: {
     borderWidth: 1,
     width: "80%",
-    color: "grey",
-  },
-  image: {
-    minHeight: 300,
-  },
-  overlay: {
-    backgroundColor: "rgba(69,85,117,0.9)",
+    color: colors.darkGrey,
   },
 });
