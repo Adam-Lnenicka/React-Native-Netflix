@@ -17,24 +17,13 @@ import {
 import Movie from "../components/Movie";
 import SearchBanner from "../components/SearchBanner";
 import { globalStyles } from "../styles/globalStyles";
+import { useMovieApi } from "../components/MovieApi";
 
-// export default function Home({ navigation }) {
-//   const [text, setText] = useState("");
-//   const [textArray, setTextArray] = useState([]);
-//   const [movies, setMovies] = useState([]);
-//   const [searchPhrase, setSearchPhrase] = useState("");
-
-//   const movieArray = async () => {
-//     const url = "http://localhost:4000/movies";
-
-//     try {
-//       const response = await fetch(url);
-//       const data = await response.json();
-//       setMovies(data.data);
-//     } catch (err) {
-//       console.log.err;
-//     }
-//   };
+export default function Home({ navigation }) {
+  const [text, setText] = useState("");
+  const [textArray, setTextArray] = useState([]);
+  const [searchPhrase, setSearchPhrase] = useState("");
+  const { movies, movieArray } = useMovieApi();
 
   const handleSearch = (input) => {
     setSearchPhrase(input);
