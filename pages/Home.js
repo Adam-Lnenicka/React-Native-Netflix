@@ -26,7 +26,7 @@ export default function Home({ navigation }) {
   const [movies, setMovies] = useState([]);
 
   const movieArray = async () => {
-    const url = "http://localhost:4000/movies";
+    const url = "http://localhost:4000/movies?";
 
     try {
       const response = await fetch(url);
@@ -73,7 +73,6 @@ export default function Home({ navigation }) {
       release_date: values.release_date,
       poster_path: values.poster_path,
     }));
-    setText("");
   };
 
   //end of form section
@@ -90,7 +89,7 @@ export default function Home({ navigation }) {
   };
 
   const handleArray = () => {
-    setTextArray((currentTextArray) => [...currentTextArray, text]);
+    setTextArray((currentTextArray) => [text, ...currentTextArray]);
     setText("");
   };
 
@@ -105,10 +104,11 @@ export default function Home({ navigation }) {
 
   useEffect(() => {
     movieArray();
-  });
+  }, []);
 
   return (
     <View style={globalStyles.container}>
+      {/* {console.log(movies)} */}
       <View>
         <TextInput
           placeholder="Enter movie title"
@@ -170,7 +170,6 @@ export default function Home({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     alignItems: "center",
     justifyContent: "center",
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
